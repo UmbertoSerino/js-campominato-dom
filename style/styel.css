@@ -37,8 +37,12 @@ button.button-start{
     height: 30px;
 }
 
-.bg-color{
+.bg-color-aqua{
     background-color: aqua;
+}
+
+.bg-color-red{
+    background-color: red;
 }
 
 .square-class {

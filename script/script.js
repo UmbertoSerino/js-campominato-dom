@@ -1,5 +1,3 @@
-
-
 const buttonGames = document.querySelector(".button-start");
 const containerBig = document.querySelector("article.container-grid");
 const selectGames = document.querySelector("select#difficulty");
@@ -11,21 +9,33 @@ buttonGames.addEventListener("click", function () {
     containerBig.innerHTML = "";    
     
     for (let index = 0; index < 100; index++) {
-        const currentSquare = createdSquare(index);
-        
-        currentSquare.addEventListener("click", function () {                 
-            currentSquare.classList.toggle("bg-color");
+        const currentSquare = createdSquare(index);     
+        // seconda funzione addEventListener   
+        currentSquare.addEventListener("click", function () {
             console.log("cella numero:", index + 1);
+            if (bombsGames.includes(index + 1)) {
+                currentSquare.classList.add("bg-color-red")               
+            } else {
+                currentSquare.classList.toggle("bg-color-aqua");
+            }
         });
         containerBig.appendChild(currentSquare);
+        containerBig.style.display = "flex";
     }
-    containerBig.style.display = "flex";
+
+    // Generatore di bombe
+    while (bombsGames.length < totalBombs){
+        const numberBombs = Math.floor(Math.random() * 100) + 1;
+        if (!bombsGames.includes(numberBombs)){
+            bombsGames.push(numberBombs);
+        }
+    };
+    console.log(bombsGames);
 });
 
-while (bombsGames.length < totalBombs){
-    const numberBombs = Math.floor(Math.random() * 100) + 1;
-    bombsGames.push(numberBombs);
-}
+
+
+
 
 
 // ========== Function ==========
@@ -38,6 +48,5 @@ function createdSquare(index) {
     squareElement.innerText = index + 1;
     return squareElement;
 }
-
 
 
